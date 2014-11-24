@@ -81,7 +81,7 @@ p
 p + formatFig("bioinformatics")
 ```
 
-The figure doesn't look better than the defaults, but the point of the function create a theme suitable for publication (black and white, high resolution, with large text).
+I know the figure doesn't quite look right or better than the defaults, but the point of this function was to create a theme suitable for publication (black and white, high resolution, with large text). When used for the resolution that I used these defaults worked really well.
 
 ## reorderdesc
 This function uses `reorder` to change the order of the factors except reorders them in reverse order using `desc` from `dplyr`.
