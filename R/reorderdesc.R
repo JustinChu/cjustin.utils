@@ -35,6 +35,6 @@
 #' @seealso see \code{\link{reorder}} for more details.
 #' @export
 #'   
-reorderdesc <- function(x, X, order = is.ordered(x)){
-  return(reorder(x, dplyr::desc(X), order = order))
+reorderdesc <- function(x, X, FUN = mean, ..., order = is.ordered(x)){
+  return(reorder(x, dplyr::desc(X), FUN = FUN, ..., order = order))
 }

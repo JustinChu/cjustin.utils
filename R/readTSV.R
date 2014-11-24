@@ -1,8 +1,7 @@
 #'Data Input to Tab seperated file
 #'
 #'@description \code{writeTSV} is a wrapper around \code{read.table} with 
-#'  defaults that read a tab seperated file, without quotes, and without
-#'  rownames, and with a header.
+#'  defaults that read a tab seperated file, without quotes, and with a header.
 #'  
 #'@usage readTSV(file, header = TRUE, sep = "\\t", quote = "", dec = ".", 
 #'  numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, col.names, 
@@ -130,7 +129,7 @@
 #'
 readTSV <- function(file, header = TRUE, sep = "\t", quote = "",
                     dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
-                    row.names = NULL, col.names, as.is = !stringsAsFactors,
+                    row.names, col.names, as.is = !stringsAsFactors,
                     na.strings = "NA", colClasses = NA, nrows = -1,
                     skip = 0, check.names = TRUE, fill = !blank.lines.skip,
                     strip.white = FALSE, blank.lines.skip = TRUE,

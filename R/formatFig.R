@@ -18,7 +18,7 @@
 #' library(ggplot2)
 #' testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"), 
 #'                                          100, replace=TRUE ))
-#' p <- ggplot(testDat, aes(core, time)) + geom_bar()
+#' p <- ggplot(testDat, aes(treatment)) + geom_bar()
 #' p <- p + formatFig("bioinformatics")
 #' 
 #' @seealso \code{\link{ggplot2}}
