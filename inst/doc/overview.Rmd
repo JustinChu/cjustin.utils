@@ -1,0 +1,108 @@
+---
+title: "Overview of cjustin.utils"
+author: "Justin Chu"
+date: '`r Sys.Date()`'
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of cjustin.utils}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+cjustin.utils
+-------
+
+This package contains custom functions designed to make common tasks easier. Here I will outline example and usage of these custom functions.
+
+Make fake dataset for illustrative purposes (derived from [here](http://svitsrv25.epfl.ch/R-doc/library/gdata/html/reorder.html)):
+```{r}
+library(cjustin.utils)
+testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"),
+                       100, replace=TRUE ))
+knitr::kable(tail(testDat, 10), format = "markdown")
+```
+
+## writeTSV
+This function is a wrapper around `write.table` that will output a tab seperated file (tsv).
+
+```{r}
+writeTSV(testDat, "testDat.tsv")
+
+#does file exist
+file.exists("testDat.tsv")
+testDat2 <- read.table("testDat.tsv", sep = "\t", quote = "")
+
+#does file load correctly
+knitr::kable(tail(testDat2, 10), format = "markdown")
+```
+
+## readTSV
+This function is a wrapper around `write.read` that will take a tab seperated file (tsv), a sort of compation to `readTSV`
+
+```{r}
+testDat3 <- readTSV("testDat.tsv")
+
+#does file load correctly
+knitr::kable(tail(testDat3, 10), format = "markdown")
+
+#check if identical to original
+identical(testDat3, testDat)
+
+#cleanup
+file.remove("testDat.tsv")
+```
+
+## peek
+This function is like `head` or `tail` except it looks in the middle of the file rather than the start or end.
+
+```{r}
+knitr::kable(peek(testDat), format = "markdown")
+```
+
+Like `head` or `tail` you can specify how many rows you want to look at using `n` (also the second parameters):
+```{r}
+knitr::kable(peek(testDat, 10), format = "markdown")
+```
+
+You can also set where in the file you want to look using `loc` (value between 0 and 1, 0.5 means you start looking directly in the middle of the file):
+```{r}
+knitr::kable(peek(testDat, 10, 0.1), format = "markdown")
+```
+
+## formatFig
+This function formats ggplot2
+
+```{r, fig.show='hold'}
+library(ggplot2)
+p <- ggplot(testDat, aes(treatment)) + geom_bar()
+#without formatting
+p
+#with formatting
+p + formatFig("bioinformatics")
+```
+
+The figure doesn't look better than the defaults, but the point of the function create a theme suitable for publication (black and white, high resolution, with large text).
+
+## reorderdesc
+This function uses `reorder` to change the order of the factors except reorders them in reverse order using `desc` from `dplyr`.
+
+```{r, fig.show='hold'}
+library(ggplot2)
+#reorder using reorder + order
+reorderedDat <- testDat
+reorderedDat$treatment <- reorder(testDat$treatment, order(testDat$treatment))
+reorderedDescDat <- testDat
+reorderedDescDat$treatment <- reorderdesc(testDat$treatment, order(testDat$treatment))
+#factors ordered in ascending order
+ggplot(reorderedDat, aes(treatment)) + geom_bar()
+#factors ordered in desceding order
+ggplot(reorderedDescDat, aes(treatment)) + geom_bar()
+```
+
+You can see the order of the factors is reversed in my function compared to the normal `reorder`.
+
+Reflections:
+------
+More than our assignment on automation, making this package reminds me of a XKCD comic related to [automation](http://xkcd.com/1319/). Each function serves as something I have to maintain as small units that are essentially functions I automated for myself. Basically I don't really know if between all the tests and documentation if I am really saving time. Negativity aside, I actually think that I will likely benefit from this task in the long run, but it is a strange thing trying to predict what functions will be useful in the future.
+
+For each function the general process of: coding -> documentation -> updating requirement -> writing tests -> updating vignettes -> checking - although tedious, could easily become second nature, and is a good way to work since it empasizes coding with minimal redundancy and robustness (through testing).
