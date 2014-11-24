@@ -1,0 +1,45 @@
+---
+title: "Overview of cjustin.utils"
+author: "Justin Chu"
+date: '`r Sys.Date()`'
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of cjustin.utils}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+cjustin.utils
+-------
+
+This package contains custom functions designed to make common tasks easier. Here I will outline example and usage of these custom functions.
+
+Make fake dataset for illustrative purposes (derived from [here](http://svitsrv25.epfl.ch/R-doc/library/gdata/html/reorder.html)):
+```{r}
+library(cjustin.utils)
+testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"),
+                       100, replace=TRUE ))
+knitr::kable(head(testDat, 10), format = "markdown")
+```
+
+## writeTSV
+This function is a wrapper around write.table that will output a tab seperated file (tsv) 
+
+```{r}
+writeTSV(testDat, "testDat.tsv")
+
+#does file exist
+file.exists("testDat.tsv")
+testDat2 <- read.table("testDat.tsv", sep = "\t", quote = "")
+
+#does file load correctly
+knitr::kable(head(testDat2, 10), format = "markdown")
+
+#cleanup
+file.remove("testDat.tsv")
+```
+
+## readTSV
+## formatFig
+## peek
+## reorderdesc

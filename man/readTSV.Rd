@@ -108,9 +108,9 @@ may include the row names.}
 single character or an empty string. Use "" to turn off the interpretation
 of comments altogether.}
 
-\item{allowEscapes}{logical. Should C-style escapes such as \\n be processed or
-read verbatim (the default)? Note that if not within quotes these could be
-interpreted as a delimiter (but not as a comment character). For more
+\item{allowEscapes}{logical. Should C-style escapes such as \\n be processed
+or read verbatim (the default)? Note that if not within quotes these could
+be interpreted as a delimiter (but not as a comment character). For more
 details see scan.}
 
 \item{flush}{logical: if TRUE, scan will flush to the end of the line after
@@ -137,9 +137,21 @@ string can be used to include (small) data sets within R code.}
 
 \item{skipNul}{logical: should nuls be skipped?}
 }
+\value{
+a dataframe
+}
 \description{
 \code{writeTSV} is a wrapper around \code{read.table} with
- defaults that read a tab seperated file, without quotes, and with a header.
+ defaults that read a tab seperated file, without quotes, and without
+ rownames, and with a header.
+}
+\examples{
+testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"),
+                                         100, replace=TRUE ))
+write.table(testDat, "testDat.tsv", sep = "\\\\t", quote = FALSE, row.names = FALSE)
+readTSV("testDat.tsv")
+##cleanup
+file.remove("testDat.tsv")
 }
 \author{
 Justin Chu

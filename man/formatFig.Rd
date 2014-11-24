@@ -8,6 +8,9 @@ formatFig(type = "bioinformatics")
 \arguments{
 \item{type}{string used to determine what theme to use}
 }
+\value{
+a list containing theme options for ggplot2
+}
 \description{
 Formats ggplot2 figure with themes that I have custom made for
   figures in various journals. As I make more figure I may have more defaults
@@ -18,7 +21,10 @@ Formats ggplot2 figure with themes that I have custom made for
 Themes: bioinformatics - a black and white theme with large font
 }
 \examples{
-p <- ggplot(tDat_min, aes(core, time)) + geom_bar(stat="identity")
+library(ggplot2)
+testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"),
+                                         100, replace=TRUE ))
+p <- ggplot(testDat, aes(core, time)) + geom_bar()
 p <- p + formatFig("bioinformatics")
 }
 \author{

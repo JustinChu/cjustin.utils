@@ -1,14 +1,20 @@
 Package: cjustin.utils
 Title: A set of personal utility functions for R.
-Version: 0.1
+Version: 1.0.0
 Authors@R: "Justin Chu <justinchu1989@gmail.com> [aut, cre]"
 Description: A package for personal use to make life using R. Intended to be
     added upon in situations were I realize that I am re-writing the same code
     over and over again.
 Depends:
     R (>= 3.1.2),
+Imports:
+    assertthat,
     dplyr,
     ggplot2,
     grid
 License: CC0
 LazyData: true
+Suggests:
+    knitr,
+    testthat
+VignetteBuilder: knitr

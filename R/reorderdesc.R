@@ -8,7 +8,9 @@
 #'   \code{desc} (from dplyr) functions.
 #'   
 #' @usage reorder(x, ...) reorder(x, X, FUN = mean, ..., order = is.ordered(x))
-#'   
+#' 
+#' @return the dataframe inputed but with factors reordered in descending order
+#' 
 #' @details Uses \code{loc} to determine location of dataframe to look at. Will 
 #'   only return rows that are before the end of the file. Zero or negative 
 #'   \code{n} values will cause function to return empty dataframes.
@@ -31,7 +33,8 @@
 #'    levels(reorderdesc(trt, order(trt)))
 #' 
 #' @seealso see \code{\link{reorder}} for more details.
+#' @export
 #'   
 reorderdesc <- function(x, X, order = is.ordered(x)){
-  return(reorder(x, desc(X), order = order))
+  return(reorder(x, dplyr::desc(X), order = order))
 }

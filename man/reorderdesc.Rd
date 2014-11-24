@@ -16,6 +16,9 @@ unique level of x determines the eventual order of that level.}
 \item{order}{logical, whether return value will be an ordered factor rather
 than a factor.}
 }
+\value{
+the dataframe inputed but with factors reordered in descending order
+}
 \description{
 reorderdesc is a generic function. The "default" method treats
   its first argument as a categorical variable, and reorders its levels based

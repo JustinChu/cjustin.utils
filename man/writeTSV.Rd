@@ -4,7 +4,7 @@
 \title{Data Output to Tab seperated file}
 \usage{
 write.table(x, file = "", append = FALSE, quote = FALSE, sep = "\\t",
-  eol = "\\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE,
+  eol = "\\n", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE,
   qmethod = c("escape", "double"), fileEncoding = "")
 }
 \arguments{
@@ -60,7 +60,14 @@ re-encoded as they are written. See file.}
 }
 \description{
 \code{writeTSV} is a wrapper around \code{write.table} with
-  defaults that write to a tab seperated file without quotes.
+  defaults that write to a tab seperated file without quotes and rownames.
+}
+\examples{
+testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"),
+                                         100, replace=TRUE ))
+writeTSV(testDat, "testDat.tsv")
+##cleanup
+file.remove("testDat.tsv")
 }
 \author{
 Justin Chu

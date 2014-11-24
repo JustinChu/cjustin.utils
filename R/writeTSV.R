@@ -1,12 +1,14 @@
 #' Data Output to Tab seperated file
 #' 
 #' @description \code{writeTSV} is a wrapper around \code{write.table} with
-#'   defaults that write to a tab seperated file without quotes.
+#'   defaults that write to a tab seperated file without quotes and rownames.
 #'   
 #' @usage write.table(x, file = "", append = FALSE, quote = FALSE, sep = "\\t", 
-#'   eol = "\\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE,
+#'   eol = "\\n", na = "NA", dec = ".", row.names = FALSE, col.names = TRUE,
 #'   qmethod = c("escape", "double"), fileEncoding = "")
-#'   
+#'
+#' @return NULL 
+#' 
 #' @author Justin Chu
 #'   
 #' @param x the object to be written, preferably a matrix or data frame. If not,
@@ -47,10 +49,18 @@
 #' @param ...	arguments to writeTSV: append, col.names, sep, dec and qmethod
 #'   cannot be altered.
 #' 
+#' @examples
+#' testDat <- data.frame( treatment = sample( c("PLACEBO", "300 MG", "600 MG", "1200 MG"), 
+#'                                          100, replace=TRUE ))
+#' writeTSV(testDat, "testDat.tsv")
+#' ##cleanup
+#' file.remove("testDat.tsv")
+#' 
 #' @seealso see \code{\link{write.table}} for more details.
+#' @export
 #'   
 writeTSV <- function(x, file = "", append = FALSE, quote = FALSE, sep = "\t",
-                     eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+                     eol = "\n", na = "NA", dec = ".", row.names = FALSE,
                      col.names = TRUE, qmethod = c("escape", "double"),
                      fileEncoding = ""){
   return(write.table(x, file, append, quote, sep, eol, na, dec, row.names = TRUE,
