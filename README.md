@@ -5,5 +5,11 @@ A package for personal use to make life using R. Intended to be added upon in si
 
 To install this package type in R:
 ```
+library(devtools)
 install_github("JustinChu/cjustin.utils")
+```
+
+For help run:
+```
+?cjustin.utils
 ```
