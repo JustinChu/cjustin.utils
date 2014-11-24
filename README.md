@@ -12,4 +12,5 @@ install_github("JustinChu/cjustin.utils")
 For help run:
 ```
 ?cjustin.utils
+browseVignettes(package = "cjustin.utils")
 ```
