@@ -6,7 +6,7 @@ Description: A package for personal use to make life using R. Intended to be
     added upon in situations were I realize that I am re-writing the same code
     over and over again.
 Depends:
-    R (>= 3.1.2),
+    R (>= 3.1.2)
 Imports:
     assertthat,
     dplyr,
