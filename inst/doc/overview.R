@@ -45,6 +45,15 @@ p + formatFig("bioinformatics")
 
 ## ----, fig.show='hold'---------------------------------------------------
 library(ggplot2)
+p
+#with formatting
+p + formatFig("markdown")
+
+## ----, fig.show='hold'---------------------------------------------------
+formatFig("NOT A THEME")
+
+## ----, fig.show='hold'---------------------------------------------------
+library(ggplot2)
 #reorder using reorder + order
 reorderedDat <- testDat
 reorderedDat$treatment <- reorder(testDat$treatment, order(testDat$treatment))

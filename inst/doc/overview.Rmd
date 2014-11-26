@@ -37,7 +37,7 @@ knitr::kable(tail(testDat2, 10), format = "markdown")
 ```
 
 ## readTSV
-This function is a wrapper around `write.read` that will take a tab seperated file (tsv), a sort of compation to `readTSV`
+This function is a wrapper around `read.table` that will take a tab seperated file (tsv), a sort of compation to `readTSV`
 
 ```{r}
 testDat3 <- readTSV("testDat.tsv")
@@ -81,7 +81,22 @@ p
 p + formatFig("bioinformatics")
 ```
 
-The figure doesn't look better than the defaults, but the point of the function create a theme suitable for publication (black and white, high resolution, with large text).
+I know the figure doesn't quite look right or better than the defaults, but the point of this function was to create a theme suitable for publication (black and white, high resolution, with large text). When used for the resolution that I used these defaults worked really well.
+
+Here is another mode designed for markdown documents
+```{r, fig.show='hold'}
+library(ggplot2)
+p
+#with formatting
+p + formatFig("markdown")
+```
+
+This formats better than the bioinformatics in markdown since this one was designed for markdown.
+
+```{r, fig.show='hold'}
+formatFig("NOT A THEME")
+```
+An error is returned when calling a type that is not defined.
 
 ## reorderdesc
 This function uses `reorder` to change the order of the factors except reorders them in reverse order using `desc` from `dplyr`.

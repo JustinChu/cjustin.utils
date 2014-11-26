@@ -6,12 +6,14 @@
 #'   bioinformatics.
 #'   
 #' @usage formatFig(type = "bioinformatics")
+#'        formatFig(type = "markdown")
 #' 
 #' @return a list containing theme options for ggplot2
 #'   
 #' @author Justin Chu
 #'   
 #' @details Themes: bioinformatics - a black and white theme with large font
+#'          markdown - general purpose theme for markdown document
 #'   
 #' @param type string used to determine what theme to use
 #' @examples
@@ -28,6 +30,9 @@ formatFig <- function(type = "bioinformatics") {
   if(type == "bioinformatics"){
     return(.bioinformaticsTheme())
   }
+  else if(type == "markdown"){
+    return(.markdownTheme())
+  }
   #if type unknown return NULL
   else{
     warning("type not recognized")
@@ -35,6 +40,7 @@ formatFig <- function(type = "bioinformatics") {
   }
 }
 
+#helper functions
 .bioinformaticsTheme <- function(){
   return(ggplot2::theme_bw() + 
          ggplot2::theme(legend.key.size=grid::unit(3,"line"),
@@ -48,3 +54,9 @@ formatFig <- function(type = "bioinformatics") {
          panel.border = ggplot2::element_blank()))
 }
 
+.markdownTheme <- function(){
+  return(ggplot2::theme_bw() +
+         ggplot2::theme(panel.grid.major = ggplot2::element_blank(), 
+                        panel.grid.minor = ggplot2::element_blank(),
+                        axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)))
+}

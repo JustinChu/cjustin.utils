@@ -1,6 +1,6 @@
 #'Data Input to Tab seperated file
 #'
-#'@description \code{writeTSV} is a wrapper around \code{read.table} with 
+#'@description \code{readTSV} is a wrapper around \code{read.table} with 
 #'  defaults that read a tab seperated file, without quotes, and with a header.
 #'  
 #'@usage readTSV(file, header = TRUE, sep = "\\t", quote = "", dec = ".", 
